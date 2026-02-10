@@ -481,3 +481,28 @@ body {
     display: none; 
   }
 }
+
+
+/* For Dwonload  */
+
+@media print {
+  body * {
+    visibility: hidden; 
+  }
+
+  .review-printable, .review-printable * {
+    visibility: visible; /
+  }
+
+  .review-printable {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .button-group {
+    display: none;
+  }
+}

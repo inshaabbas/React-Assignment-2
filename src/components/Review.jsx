@@ -1,16 +1,10 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 const Review = ({ data, prevStep }) => {
-  const printRef = useRef();
 
   const handleDownload = () => {
-    const printContents = printRef.current.innerHTML;
-    const originalContents = document.body.innerHTML;
-
-    document.body.innerHTML = printContents; 
+    // Simply trigger print — CSS handles what is visible
     window.print();
-    document.body.innerHTML = originalContents;
-    window.location.reload(); 
   };
 
   return (
@@ -18,7 +12,8 @@ const Review = ({ data, prevStep }) => {
       <h1 className="step-title">Review Your Information</h1>
       <p className="step-description">Please review your information before submission</p>
 
-      <div ref={printRef}>
+      <div className="review-printable">
+        {/* Personal Information */}
         <div className="review-section">
           <h3>Personal Information</h3>
           <p><strong>First Name:</strong> {data.firstName}</p>
@@ -28,6 +23,7 @@ const Review = ({ data, prevStep }) => {
           <p><strong>Email:</strong> {data.email}</p>
         </div>
 
+        {/* Education */}
         <div className="review-section">
           <h3>Education</h3>
           <p><strong>Qualification:</strong> {data.qualification}</p>
@@ -35,12 +31,14 @@ const Review = ({ data, prevStep }) => {
           <p><strong>Grade/Percentage:</strong> {data.grade}</p>
         </div>
 
+        {/* Skills */}
         <div className="review-section">
           <h3>Skills</h3>
           <p><strong>Primary Skill:</strong> {data.primarySkill}</p>
           <p><strong>Secondary Skill:</strong> {data.secondarySkill}</p>
         </div>
 
+        {/* Professional Details */}
         <div className="review-section">
           <h3>Professional Details</h3>
           <p><strong>Total Experience:</strong> {data.totalExperience}</p>
